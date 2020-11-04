@@ -1,0 +1,38 @@
+.result-ac{
+  color: #009874 !important;
+  font-weight: bold;
+}
+.result-wa{
+  color: #dd4124 !important;
+}
+.result-tle, .result-ole, .result-mle .result-fe{
+  color: #fa7268 !important
+}
+.result-rte{
+  color: #5f4b8b !important;
+}
+.result-ce {
+    color: #0f4c81 !important;
+}
+.result-compile, .result-judging {
+    color: #e67e22 !important;
+}
+span.problem-label {
+    display: inline;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 8px 12px;
+}
+.label-success {
+  background-color: #5cb85c;
+}
+.label-danger {
+  background-color: #d9534f;
+}
+.label-parent{
+}

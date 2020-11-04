@@ -1,0 +1,192 @@
+* {
+  border-radius: 0 !important;
+}
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', 'Apple SD Gothic Neo', 'Noto Sans CJK KR', 'Noto Sans KR', '나눔바른고딕', '나눔고딕', '맑은고딕', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
+  color: #333;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+body :focus {
+  outline: none;
+}
+
+p, li, li a, pre {
+  color: #555;
+}
+
+.breadcrumbs {
+  overflow: hidden;
+  padding: 10px 0 6px;
+  border-bottom: 1px solid #eee;
+  background-color: #fcfcfc;
+}
+
+.breadcrumbs h1 {
+  color: #666;
+  font-size: 22px;
+  margin-top: 8px;
+}
+
+.content {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.row {
+  padding-left: -15px;
+  padding-right: -15px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.logincard {
+  text-align: center;
+  border: solid 1px #eee;
+  box-shadow: 0 0 3px #eee;
+}
+
+.logincard form {
+  padding: 30px;
+}
+
+.logincard .card-header {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 35px;
+  padding: 0;
+  background-color: inherit;
+}
+
+.logincard h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.blue-bg:hover {
+  background: #2980b9 !important;
+  color: #fff;
+}
+
+.status-card{
+  margin-bottom:20px;
+}
+
+hr {
+  margin: 30px 0;
+}
+
+.row:after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+
+.row-zero {
+  margin: 0;
+}
+
+.form-control:focus {
+  border-color: #bbb;
+  box-shadow: 0 0 2px #c9c9c9;
+}
+
+.title {
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+  border-bottom: 1px solid #eee;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #585f69;
+  text-shadow: none;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 28px;
+  line-height: 35px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.limit-group:after{
+  display:block;
+  clear:both;
+  content:"";
+}
+.limit-group {
+  font-size: 13px;
+}
+
+.limit-group .table {
+  margin: 0;
+}
+
+.limit-group .table th {
+  border: 0;
+}
+
+.subtitle {
+  margin: 10px 0 25px 0;
+  border-bottom: 2px solid #eee;
+}
+
+.subtitle h2 {
+  display: inline-block;
+  font-size: 22px;
+  margin: 0 0 -2px 0;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #0076C0;
+}
+
+.paragraph pre {
+  font-size: medium;
+}
+
+pre {
+  font-family: inherit;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.sampledata {
+  white-space: pre;
+  word-break: normal;
+  word-wrap: normal;
+  font-size: 18px;
+  font-family: Menlo, Monaco, 'Source Code Pro', consolas, monospace;
+  padding: 8px;
+  color: #333;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  overflow-x: scroll;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+.table-responsive th,.table-responsive td{
+  white-space:nowrap;
+}
+
+.codearea{
+  margin-bottom:25px;
+}
+
+form textarea{
+  width:100%;
+}
+form .title input{
+  width:100%;
+}

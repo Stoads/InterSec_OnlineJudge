@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  include ./header.jade
+  h1= title
+  p 
+  p Welcome to #{title}
+  if session
+    p #{session['ID']}
+  script
+   | console.log(#{title});

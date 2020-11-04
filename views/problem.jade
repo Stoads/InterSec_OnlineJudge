@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  include ./header.jade
+  .breadcrumbs
+    .container
+      h1.float-left 문제
+  script document.getElementById('problem_item').className='active';
+  .container.content
+    .row
+      include ./problembar.jade
+      script document.getElementById('problembar-problem-item').className='nav-link active'
+      if problem
+        .col-md-12
+          .title
+            h1 #{problem['TITLE']}
+        .col-md-12
+          .limit-group
+            .table-responsive
+              table.table
+                thead
+                  tr
+                    th(scope="col") 시간 제한
+                    th(scope="col") 메모리 제한
+                tbody
+                  tr
+                    td(scope="row") #{problem['TIMELIMIT']} 초
+                    td #{problem['MEMORYLIMIT']} MB
+        .col-md-12
+          section.paragraph
+            .subtitle
+              h2 문제
+            pre #{problem['CONTENT']}
+        .col-md-12
+          section.paragraph
+            .subtitle
+              h2 입력
+            pre #{problem['INPUT_TEXT']}
+        .col-md-12
+          section.paragraph
+            .subtitle
+              h2 출력
+            pre #{problem['OUTPUT_TEXT']}
+        .col-md-6
+          section.paragraph
+            .subtitle
+              h2 입력 예제
+            pre.sampledata #{problem['INPUT_EX']}
+        .col-md-6
+          section.paragraph
+            .subtitle
+              h2 출력 예제
+            pre.sampledata #{problem['OUTPUT_EX']}
+  script
+   | console.log(#{title});

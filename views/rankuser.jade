@@ -1,0 +1,61 @@
+extends layout
+
+block content
+  include ./header.jade
+  script document.getElementById('ranking_item').className='active';
+  .breadcrumbs
+    .container
+      h1.float-left 유저정보
+  .container.content
+    .row
+      //- .col-md-12
+      //-   form
+      //- 
+      .col-lg-3 
+        .table-responsive
+          table.table
+            tbody
+              tr
+                th ID
+                td #{idinfo['ID']}
+              tr
+                th 닉네임
+                td #{idinfo['NICKNAME']}
+              tr
+                th 틀렸습니다
+                td #{tryinfo['1']}
+              tr
+                th 맞았습니다
+                td #{tryinfo['2']}    
+              tr
+                th 시간 초과
+                td #{tryinfo['3']}    
+              tr
+                th 런타임 에러
+                td #{tryinfo['4']}    
+              tr
+                th 컴파일 에러
+                td #{tryinfo['5']}
+      .col-lg-9
+        - var className = ['','result-wa','result-ac'];
+        .card.status-card
+          h5.card-header 해결한 문제
+          .card-body
+            - for(var i=0,lists=statusinfo['solved'];i<lists.length;i++){
+            a.blue-cl(href='/problem/'+lists[i])
+              if session&&userstatus[lists[i]]
+                span(class=className[userstatus[lists[i]]]) #{lists[i]}
+              else
+                span #{lists[i]}
+            - }
+        .card.status-card
+          h5.card-header 시도했지만 풀지 못한 문제
+          .card-body
+            - for(var i=0,lists=statusinfo['wrong'];i<lists.length;i++){
+            a.blue-cl(href='/problem/'+lists[i])
+              if session&&userstatus[lists[i]]
+                span(class=className[userstatus[lists[i]]]) #{lists[i]}
+              else
+                span #{lists[i]}
+            | 
+            - }

@@ -1,0 +1,11 @@
+.col-md-12
+  ul.nav.nav-pills
+    li.nav-item
+      a#problembar-problem-item.nav-link(href='/problem/'+problem['NO']) 문제
+    li.nav-item
+      a#problembar-submit-item.nav-link(href='/submit/'+problem['NO']) 제출
+    li.nav-item
+      a#problembar-status-item.nav-link(href='/status?from_problem=1&no='+problem['NO']) 채점 현황
+    if session
+      li.nav-item
+        a#problembar-mysource-item.nav-link(href='/status?from_problem=2&no='+problem['NO']+'&id='+session['ID']) 내 채점 현황

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  include ./header.jade
+  .breadcrumbs
+    .container
+      h1.float-left 회원탈퇴
+  .container.content
+    .row
+      .logincard.card
+        form#signin_form(method="post" action="remove")
+          .card-header
+            h2 회원탈퇴
+          .card-content
+            .input-group
+              input#chk.form-control(type="text" placeholder="회원탈퇴" autofocus="autofocus" name="check")
+            input(type="hidden" value="#{session['ID']}" name="id")
+            p
+             | 탈퇴하고자 한다면 회원탈퇴를 입력해주세요.
+            .row
+              button#submit.btn.blue-bg.ml-auto(type="submit" disabled) 탈퇴하기
+              
+  script(src="/javascripts/remove.js")

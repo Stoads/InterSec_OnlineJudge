@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  include ./header.jade  
+  .breadcrumbs
+    .container
+      h1.float-left 제출
+  script document.getElementById('problem_item').className='active';
+  .container.content
+    .row
+      include ./problembar.jade
+      script document.getElementById('problembar-submit-item').className = 'nav-link active';
+      .col-md-12
+        .title
+          h1 #{problem['TITLE']}
+      .col-md-12
+        section.paragraph
+          .subtitle
+            h2 코드
+      .col-md-12
+        form#form_tag(action="/submit/"+problem['NO'] method="post")
+          section.codearea
+            textarea#editor.codemirror-textarea(data-mime="text/x-c++src")
+            input#code(type="hidden" name="code")
+      .col-md-12
+        button#submit.btn.blue-bg.float-right 제출하기
+      script(src='/javascripts/submit.js')

@@ -1,0 +1,57 @@
+extends layout
+
+block content
+  include ./header.jade
+  script document.getElementById('problem_item').className='active';
+  .breadcrumbs
+    .container
+      h1.float-left 문제
+  .container.content
+    .table-responsive
+      table.table.table-hover.table-striped
+        thead
+          tr
+            th(scope='col' width='100px') 번호
+            th(scope='col') 문제 이름
+            th(scope='col' width='100px') 상태
+        tbody
+          - var status_class = ['','problem-label label-danger','problem-label label-success']
+          - var status_name=['','실패','성공'];
+          - for(var i=0;i<problemList.length;i++){
+          tr
+            td(scope='row' width='100px') #{problemList[i]['NO']}
+            td 
+              a.blue-cl(href='/problem/' + problemList[i]['NO']) #{problemList[i]['TITLE']}
+            td.label-parent(width='100px') 
+              span(class=status_class[problemList[i]['STATUS']]) #{status_name[problemList[i]['STATUS']]}
+          - }
+    nav(aria-label='page_number')
+      ul.pagination.justify-content-center
+        if page != 1
+          li.page-item
+            a.page-link(href='/problemset/1' tabindex='-1' aria-disabled='true') 
+              svg.bi.bi-chevron-bar-left(width='0.8em' height='0.8em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
+                path(fill-rule='evenodd' d='M11.854 3.646a.5.5 0 0 1 0 .708L8.207 8l3.647 3.646a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708 0zM4.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5z')
+          li.page-item
+            a.page-link(href='/problemset/#{page-1}' aria-label='previous')
+              svg.bi.bi-chevron-double-left(width='0.7em' height='0.7em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
+                path(fill-rule='evenodd' d='M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z')
+                path(fill-rule='evenodd' d='M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z')
+        - for(var i=page-5>1?page-5:1,n=pages<page+4?pages:page+4;i<=n;i++){
+          if(page==i)
+            li.page-item.active
+              a.page-link(href='/problemset/#{i}') #{i}
+          else
+            li.page-item
+              a.page-link(href='/problemset/#{i}') #{i}
+        - }
+        if page != pages
+          li.page-item
+            a.page-link(href='/problemset/#{page+1}' aria-label='next')
+              svg.bi.bi-chevron-double-right(width='0.7em' height='0.7em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
+                path(fill-rule='evenodd' d='M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z')
+                path(fill-rule='evenodd' d='M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z')
+          li.page-item
+            a.page-link(href='/problemset/#{pages}')
+              svg.bi.bi-chevron-bar-right(width='0.8em' height='0.8em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
+                path(fill-rule='evenodd' d='M4.146 3.646a.5.5 0 0 0 0 .708L7.793 8l-3.647 3.646a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708 0zM11.5 1a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 .5-.5z')

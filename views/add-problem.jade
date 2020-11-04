@@ -1,0 +1,66 @@
+extends layout
+
+block content
+  - var type_str = problem ? '수정' : '추가';
+  - var next = problem ? type+'/'+problem['NO'] : type;
+  - var timelimit = problem ? problem['TIMELIMIT'] : 2;
+  - var memorylimit = problem ? problem['MEMORYLIMIT'] : 128;
+  - var title = problem ? problem['TITLE'] + '' : '';
+  - var content = problem ? problem['CONTENT'] + '' : '';
+  - var input_text = problem ? problem['INPUT_TEXT'] + '' : '';
+  - var output_text = problem ? problem['OUTPUT_TEXT'] + '' : '';
+  - var input_ex = problem ? problem['INPUT_EX'] + '' : '';
+  - var output_ex = problem ? problem['OUTPUT_EX'] + '' : '';
+  include ./header.jade
+  .breadcrumbs
+    .container
+      h1.float-left 문제 #{type_str}
+  .container.content
+    form(action='/manage/'+next method='post')
+      .row
+        .col-md-12
+          .title
+            input(name='title' type='text' value=title required autofocus)
+        .col-md-12
+          .limit-group
+            .table-responsive
+              table.table
+                thead
+                  tr
+                    th(scope="col") 시간 제한
+                    th(scope="col") 메모리 제한
+                tbody
+                  tr
+                    td(scope="row")
+                      input(name='timelimit' type='number' step='1' value=timelimit)
+                      | 초
+                    td 
+                      input(name='memorylimit' type='number' step='32' value=memorylimit) 
+                      | MB
+        .col-md-12
+          section.paragraph
+            .subtitle
+              h2 문제
+            textarea(name="content" required maxlength='1000')= content
+        .col-md-12
+          section.paragraph
+            .subtitle
+              h2 입력
+            textarea(name='input_text' required maxlength='300')= input_text
+        .col-md-12
+          section.paragraph
+            .subtitle
+              h2 출력
+            textarea(name='output_text' required maxlength='300')= output_text
+        .col-md-6
+          section.paragraph
+            .subtitle
+              h2 입력 예제
+            textarea(name='input_ex' maxlength='300')= input_ex
+        .col-md-6
+          section.paragraph
+            .subtitle
+              h2 출력 예제
+            textarea(name='output_ex' maxlength='300')= output_exZ
+        .col-md-12
+          button.btn.float-right.blue-bg= type_str

@@ -1,0 +1,25 @@
+.input-group {
+  margin-bottom: 20px;
+}
+
+@media (min-width:992px) {
+  .logincard {
+    margin-left: 34%;
+    margin-right: 34%;
+    width: 32%;
+  }
+}
+
+@media(min-width:576px) {
+  .logincard {
+    width: 100%;
+  }
+}
+
+@media(max-width:575px) {
+  .logincard {
+    margin-left: 16px;
+    margin-right: 16px;
+    width: calc(100% - 32px);
+  }
+}

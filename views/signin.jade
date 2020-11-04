@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  include ./header.jade
+  .breadcrumbs
+    .container
+      h1.float-left 로그인
+  .container.content
+    .row
+      .logincard.card
+        form#signin_form(method="post" action="signin")
+          .card-header
+            h2 로그인
+          .card-content
+            .input-group
+              .input-group-prepend
+                span.input-group-text
+                  svg.bi.bi-person-fill(width='1em' height='1em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
+                    path(fill-rule='evenodd' d='M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z')
+              input#id.form-control(type="text" placeholder="아이디" autofocus="autofocus" name="id" value="#{id}")
+            .input-group
+              .input-group-prepend
+                span.input-group-text
+                  svg.bi.bi-lock-fill(width='1em' height='1em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
+                    path(d='M2.5 9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9z')
+                    path(fill-rule='evenodd' d='M4.5 5a1 1 0 1 1 7 0v2h-1V5a1 1 0 0 0-5 0v2h-1V5z')
+              input#pw.form-control(type="password" placeholder="비밀번호" autofocus="autofocus" name="password")
+            input(type="hidden" value="#{next}" name="next")
+            .row
+              .col-md-12
+                button#submit.btn.blue-bg.float-right(type="submit") 로그인
+            hr
+            if error
+              p.color-red 아이디 혹은 비밀번호가 잘못되었습니다.
+            p
+              | 회원가입은 
+              a.blue-cl(href="/signup") 여기
+              | 에서 할 수 있습니다.

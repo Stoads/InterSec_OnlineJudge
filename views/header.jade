@@ -1,0 +1,43 @@
+header.header
+  .topbar
+    .container 
+      ul.loginbar.float-right
+        if session&&session.ID
+          li
+            a(href='/ranking/user/'+session['ID']) #{session['NICKNAME']}
+          li.topbar-divider
+          li
+            a#sign_btn(href='/signout') 로그아웃
+          li.topbar-divider
+          li
+            a(href='/remove') 회원탈퇴
+          if session['AUTHORITY'] == 1
+            li.topbar-divider
+            li
+              a(href='/manage/problemset') 문제관리
+        else
+          li
+            a(href='/signup') 회원가입
+          li.topbar-divider
+          li
+            a#sign_btn(href='/signin') 로그인
+  nav.navbar.navbar-expand-lg.navbar-light
+    .container
+      .navbar-header
+        button.navbar-toggler.float-right.blue-bg(type='button' data-toggle='collapse' data-target='.navbar-responsive-collapse')
+          span.sr-only Toggle Navgator
+          span.navbar-toggler-icon
+        a.navbar-brand(href='/')
+          img(src='/images/logo_temp.jpg' width='auto' height='60' alt='logo' loading='lazy')
+      .collapse.navbar-collapse.navbar-responsive-collapse
+        ul.nav.navbar-nav.ml-auto
+          li#problem_item
+            a(href='/problemset') 문제
+          li#ranking_item
+            a(href='/ranking/list') 랭킹
+          li#status_item
+            a(href='/status') 채점현황
+  script(src="/javascripts/header.js")
+        //- form.form-inline.my-2.my-lg-0
+        //-   input.form-control.mr-sm-2(type='search' placeholder='Search' aria-label='Search')
+        //-   button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search

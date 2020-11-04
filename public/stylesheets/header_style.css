@@ -1,0 +1,134 @@
+.header {
+  border-bottom: 2px #eee solid;
+}
+
+.header .navbar {
+  min-height: 40px !important;
+  padding: 0;
+}
+
+.header .topbar {
+  z-index: 12;
+  padding: 8px 0;
+  position: relative;
+}
+
+.header .topbar .container:after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+
+.header .navbar .navbar-nav>li>a {
+  font-size: 14px;
+}
+
+.header .topbar ul.loginbar {
+  margin: 0;
+}
+
+.header .topbar ul.loginbar>li {
+  display: inline;
+  list-style: none;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.header .topbar ul.loginbar>li.topbar-divider {
+  margin: 0 9px;
+  top: -1px;
+  padding: 0;
+  font-size: 8px;
+  position: relative;
+  font-family: Tahoma;
+  border-right: 1px solid #bbb;
+}
+
+.header .topbar ul.loginbar>li>a, .header .topbar ul.loginbar>li>a:hover {
+  color: #7c8082;
+  font-size: 11px;
+}
+
+.header .container {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+.header .navbar-nav li:hover, .header .navbar-nav .active {
+  border-color: #0076C0;
+  color: #0076C0;
+}
+
+.header .navbar-nav li a {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+  padding: .5rem 2rem;
+}
+
+.header .navbar-toggler {
+  font-size: 1rem;
+  padding:3px 4px;
+}
+
+.header .navbar-toggler>.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-miterlimit='10' stroke-width='4' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  display: inline-block;
+  width: 32px;
+  height: 24px;
+  vertical-align: middle;
+  content: "";
+  background-size: 100% 100%;
+}
+
+.header .navbar-brand {
+  top: -13px;
+  z-index: 10000;
+  height: 100%;
+  position: relative;
+  padding: 0 10px 10px;
+}
+
+@media (min-width:992px) {
+  .header .navbar .container {
+    height: 40px;
+  }
+
+  .header .navbar-nav {
+    height: 40px;
+    margin-bottom: -2px;
+    margin-top: 2px;
+  }
+
+  .header .navbar-nav li:hover, .header .navbar-nav .active {
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+  }
+}
+
+@media (max-width: 991px) {
+  .header .navbar-header {
+    width: 100%;
+  }
+
+  .header .navbar-nav {
+    margin-bottom: 4px;
+  }
+
+  .header .navbar-nav li {
+    border-bottom: 1px solid #eee;
+  }
+
+  .header .navbar-nav .active {
+    border-bottom: 0 !important;
+    background-color: #0076C0;
+    color: #fff !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .container .navbar-header {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}

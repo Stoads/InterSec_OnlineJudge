@@ -1,0 +1,24 @@
+.red-shadow {
+  border-color: #bbb;
+  box-shadow: 0 0 2px #f44;
+  z-index: 10000;
+}
+
+.blue-shadow {
+  border-color: #bbb;
+  box-shadow: 0 0 2px #48f;
+  z-index: 10000;
+}
+
+.blue-bg {
+  background-color: #0076C0;
+  color: #fff;
+}
+
+.blue-cl {
+  color: #0076C0;
+}
+
+.color-red {
+  color: #e74c3c;
+}

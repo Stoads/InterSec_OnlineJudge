@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  include ./header.jade
+  .breadcrumbs
+    .container
+      h1.float-left 문제 관리
+  .container.content
+    form#target(action="/manage/update/" method="post")
+      .row
+        .col-md-8
+          input#no.form-control(type="number" placeholder="번호 입력" step='1')
+        .col-md-4
+          button#search.btn.blue-bg(type="button" ) 문제 검색
+          button#add.btn.blue-bg(type="button") 문제 추가
+          button#delete.btn.blue-bg(type="button") 문제 삭제
+      .row
+        .col-md-12
+          a#link(href='#')
+  script(src="/javascripts/problemsetmanage.js")

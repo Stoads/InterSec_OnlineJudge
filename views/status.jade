@@ -1,0 +1,87 @@
+extends layout
+
+block content
+  include ./header.jade  
+  .breadcrumbs
+    .container
+      h1.float-left 채점현황
+  script document.getElementById('status_item').className='active';
+  .container.content
+    .row
+      if problem
+        include ./problembar.jade
+        if session && from_problem==2
+          script document.getElementById('problembar-mysource-item').className = 'nav-link active';
+        else
+          if from_problem
+            script document.getElementById('problembar-status-item').className = 'nav-link active';
+      .col-lg-2
+      .col-lg-8
+        form(method='get' action='/status/')
+          if problem
+            input(type='hidden' name='from_problem' value='1')
+          .input-group
+            .row
+              .col-lg-4
+                input.form-control(name='id' type='text' placeholder='ID' value=ret['id'])
+              .col-lg-3
+                input.form-control(name='no' type='number' placeholder='문제번호' value=ret['no'])
+              .col-lg-3
+                select.form-control(name='status' id='search_status')
+                  -var values=['','2','1','0','3','4','5'],as_string=['모든 결과','맞았습니다','틀렸습니다','채점 중','시간 초과','런타임 에러','컴파일 에러'];
+                  -for(var i=0;i<values.length;i++){
+                  option(value=values[i] selected=values[i]==ret['status']) #{as_string[i]}
+                  -}
+              .col-lg-2
+                button.btn.blue-bg.float-right 검색
+      .col-lg-2
+      .col-md-12
+        .table-responsive
+          table.table.table-hover.table-striped
+            thead
+              tr
+                th(scope='col' width='10%') 채점번호
+                th(scope='col' width='15%') ID
+                th(scope='col' width='10%') 문제번호
+                th(scope='col') 결과
+            tbody
+              - var res_class=['result-judging','result-wa','result-ac','result-tle','result-rte','result-ce'];
+              - var res=['채점 중','틀렸습니다','맞았습니다','시간 초과','런타임 에러','컴파일 에러'];
+              - for(var i=0;i<statusList.length;i++){
+              tr
+                td(scope='row' width='100px') #{statusList[i]['NUMBER']}
+                td 
+                  a.blue-cl(href='/ranking/' + statusList[i]['ID']) #{statusList[i]['ID']}
+                td 
+                  if session
+                    a(class='blue-cl '+res_class[userstatus[statusList[i]['NO']]] href='/problem/' + statusList[i]['NO']) #{statusList[i]['NO']}
+                  else
+                    a.blue-cl(href='/problem/' + statusList[i]['NO']) #{statusList[i]['NO']}
+                td(class=res_class[statusList[i]['STATUS']]) #{res[statusList[i]['STATUS']]}
+              - }
+      .col-md-12
+        nav(aria-label='page_number')
+          ul.pagination.justify-content-center
+            if page > 1
+              li.page-item
+                a#go_first.page-link(href='/status/?page=1' tabindex='-1' aria-disabled='true') 
+                  svg.bi.bi-chevron-bar-left(width='0.8em' height='0.8em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
+                    path(fill-rule='evenodd' d='M11.854 3.646a.5.5 0 0 1 0 .708L8.207 8l3.647 3.646a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708 0zM4.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5z')
+              li.page-item
+                a#go_before.page-link(href='/status/?page=#{page-1}' aria-label='previous')
+                  svg.bi.bi-chevron-double-left(width='0.7em' height='0.7em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
+                    path(fill-rule='evenodd' d='M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z')
+                    path(fill-rule='evenodd' d='M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z')
+            if page < pages
+              li.page-item
+                a#go_next.page-link(href='/status/?page=#{page+1}' aria-label='next')
+                  svg.bi.bi-chevron-double-right(width='0.7em' height='0.7em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
+                    path(fill-rule='evenodd' d='M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z')
+                    path(fill-rule='evenodd' d='M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z')
+              li.page-item
+                a#go_last.page-link(href='/status/?page=#{pages}')
+                  svg.bi.bi-chevron-bar-right(width='0.8em' height='0.8em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
+                    path(fill-rule='evenodd' d='M4.146 3.646a.5.5 0 0 0 0 .708L7.793 8l-3.647 3.646a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708 0zM11.5 1a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 .5-.5z')
+            script
+              | var pages = #{pages},page=#{page};
+            script(src='/javascripts/status.js')
