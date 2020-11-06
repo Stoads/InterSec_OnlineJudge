@@ -2,10 +2,8 @@ extends layout
 
 block content
   include ./header.jade
-  h1= title
-  p 
-  p Welcome to #{title}
-  if session
-    p #{session['ID']}
-  script
-   | console.log(#{title});
+  .container
+    .index-text
+      h1 한신대학교 2020년도 컴퓨터공학부 소프트웨어 공모전
+      h3 Intersec LAB 팀
+      h3 개인 : 양정모
