@@ -1,4 +1,4 @@
-const EL = (sel) => document.querySelector(sel);
+var EL = (sel) => document.querySelector(sel);
 const pw_sel = EL("#pw");
 const pr_sel = EL("#pr");
 const id_sel = EL("#id");
@@ -51,6 +51,5 @@ var func = function() {
 id_sel.addEventListener("input", func);
 nn_sel.addEventListener("input", func);
 nm_sel.addEventListener("input", function () {
-  console.log(this.value);
   this.value = spec_delete(this.value)
 });

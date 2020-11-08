@@ -107,8 +107,8 @@ router.post('/:no', function(req, res, next) {
                       });
                       console.log(correct_answer);
                       correct_answer=correct_answer.toString();
-                      correct_answer=correct_answer.replace(/[\t\v\f]+/gi,' ');
-                      users_answer=users_answer.replace(/[\t\v\f]+/gi,' ');
+                      correct_answer=correct_answer.replace(/[\t\v\f]/gi,' ');
+                      users_answer=users_answer.replace(/[\t\v\f]/gi,' ');
                       if(users_answer.substring(users_answer.length-2)=='\r\n')
                         users_answer = users_answer.substring(0,users_answer.length-2);
                       if(correct_answer.substring(correct_answer.length-2)=='\r\n')
