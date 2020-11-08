@@ -135,7 +135,7 @@ router.post('/:no', function(req, res, next) {
                       console.log('correct');
                     }
                   }catch(e){
-                    console.log(e);
+                    //console.log(e);
                     if(e.signal=='SIGTERM'){
                       //TLE
                       set_score(3);
