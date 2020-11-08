@@ -100,17 +100,15 @@ router.post('/:no', function(req, res, next) {
                       ,{
                         encoding: 'utf8',
                         timeout: timelimit * 1000,  // msec
-                        maxBuffer: 200*1024,
+                        maxBuffer: 4096*4096,
                         killSignal: 'SIGTERM',
                         cwd: null,
                         env: null
                       });
                       // console.log(correct_answer);
                       correct_answer=correct_answer.toString();
-                      correct_answer=correct_answer.replace(/[\f\t\v\u00A0\u2028\u2029]/gi,' ');
-                      users_answer=users_answer.replace(/[\f\t\v\u00A0\u2028\u2029]/gi,' ');
-                      correct_answer=correct_answer.replace(/[' ']+[\r\n]/gi,'\r\n');
-                      users_answer=users_answer.replace(/[' ']+[\r\n]/gi,'\r\n');
+                      correct_answer=correct_answer.replace(/[' '\t\v\f]+[\r\n]/gi,'\r');
+                      users_answer=users_answer.replace(/[' '\t\v\f]+[\r\n]/gi,'\r');
                       if(users_answer.substring(users_answer.length-2)=='\r\n')
                         users_answer = users_answer.substring(0,users_answer.length-2);
                       if(correct_answer.substring(correct_answer.length-2)=='\r\n')
@@ -118,6 +116,7 @@ router.post('/:no', function(req, res, next) {
                       // console.log(no,set_num,number);
                       // console.log(correct_answer.length,correct_answer);
                       // console.log(users_answer.length,users_answer);
+                      console.log(correct_answer.length,users_answer.length);
                       if(correct_answer!=users_answer){
                         //실패
                         set_score(1);
