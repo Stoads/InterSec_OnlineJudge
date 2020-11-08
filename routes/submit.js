@@ -105,16 +105,17 @@ router.post('/:no', function(req, res, next) {
                         cwd: null,
                         env: null
                       });
-                      correct_answer=correct_answer.toString();
-                      correct_answer=correct_answer.replace(/\s/gi,' ');
-                      users_answer=users_answer.replace(/\s/gi,' ');
-                      if(users_answer[users_answer.length-1])
-                        users_answer = users_answer.substring(0,users_answer.length-1);
-                      if(correct_answer[correct_answer.length-1])
-                        correct_answer = correct_answer.substring(0,correct_answer.length-1);
-                      console.log(no,set_num,number);
                       console.log(correct_answer);
-                      console.log(users_answer);
+                      correct_answer=correct_answer.toString();
+                      correct_answer=correct_answer.replace(/[\t\v\f]+/gi,' ');
+                      users_answer=users_answer.replace(/[\t\v\f]+/gi,' ');
+                      if(users_answer.substring(users_answer.length-2)=='\r\n')
+                        users_answer = users_answer.substring(0,users_answer.length-2);
+                      if(correct_answer.substring(correct_answer.length-2)=='\r\n')
+                        correct_answer = correct_answer.substring(0,correct_answer.length-2);
+                      console.log(no,set_num,number);
+                      console.log(correct_answer.length,correct_answer);
+                      console.log(users_answer.length,users_answer);
                       if(correct_answer!=users_answer){
                         //실패
                         set_score(1);
