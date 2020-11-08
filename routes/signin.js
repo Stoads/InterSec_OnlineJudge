@@ -10,12 +10,12 @@ router.get('/', function(req, res, next) {
       res.redirect('/');
     });
   else
-  res.render('signin', {
-    id: '',
-    error: 0,
-    next: req.query.next || '/',
-    session: req.session.user
-  });
+    res.render('signin', {
+      id: '',
+      error: 0,
+      next: req.query.next || '/',
+      session: req.session.user
+    });
 });
 
 router.post('/', function(req, res, next) {
@@ -24,13 +24,13 @@ router.post('/', function(req, res, next) {
     if (!err) {
       if (rows[0] && req.body.password == rows[0]['PASSWORD']) {
         delete rows[0]['PASSWORD'];
-        console.log(rows[0]);
+        // console.log(rows[0]);
         req.session.user = rows[0];
         req.session.save(() => {
           res.redirect(req.body.next || '/');
         });
       } else {
-        console.log('wronged');
+        //console.log('wronged');
         res.render('signin', {
           id: req.body.id,
           error: 1,

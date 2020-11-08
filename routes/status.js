@@ -77,7 +77,7 @@ router.get('/', function(req, res, next) {
   if(req.session.user){
     dbControl.query('select no,status from status where id = ? order by no',[req.session.user['ID']],function(err,rows,field){
       if(err)next(err);
-      console.log(rows);
+      //console.log(rows);
       var user_json={};
       rows.forEach(function(v,i,c){
         user_json[''+v['no']]=v['status'];

@@ -4,12 +4,10 @@ var router = express.Router();
 var dbControl = require('../db-control');
 
 function problem_query(req, res, next, page) {
-  if (req.session.user)
-    console.log(req.session.user['ID']);
   dbControl.query("select count(no) as COUNT from problem where no >=1000;", function(err, rows, fields) {
     if (!err) {
       var pages = Math.ceil(rows[0]['COUNT'] / 10);
-      console.log(pages);
+      //console.log(pages);
       dbControl.query("select problem.no as NO,problem.title as TITLE,ifnull(status.status,0) as STATUS from problem " +
         "left join status on (problem.no = status.no and status.ID = ?) " +
         "where problem.NO >= 1000 " +

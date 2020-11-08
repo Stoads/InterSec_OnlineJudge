@@ -11,7 +11,7 @@ router.get('/:no', function(req, res, next) {
   dbControl.query("select * from problem where no = ?",[no],function(err,rows,field){
     if(!err){
       if(rows[0]){
-        console.log(rows[0]);
+        //console.log(rows[0]);
         res.render('problem', { session:req.session.user, problem:rows[0]});
       }
       else {

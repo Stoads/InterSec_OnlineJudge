@@ -80,18 +80,18 @@ router.post('/:no', function(req, res, next) {
               }
               fs.writeFile('C:/onlinejudge_source/'+number+'.cpp',req.body.code,'utf8',function(err){
                 if(err) return;
-                console.log('File Writing Complete');
+                //console.log('File Writing Complete');
                 exec('g++ -o C:/onlinejudge_execute/'+number+'.exe C:/onlinejudge_source/'+number+'.cpp',function(err,stdout,stderr){
-                  console.log('compile Log');
+                  //console.log('compile Log');
                   if(err){
                     // console.log(err);
                     set_score(5);
-                    console.log('compile Error');
+                    //console.log('compile Error');
                     return;
                   }
                   // console.log(stdout);
                   // console.log(stderr);
-                  console.log('compile Complete');
+                //  console.log('compile Complete');
                   try{
                     var set_num = 1;
                     for(;fs.existsSync('C:/onlinejudge_problemdata/'+no+'/'+set_num+'.in');set_num++){
@@ -100,50 +100,51 @@ router.post('/:no', function(req, res, next) {
                       ,{
                         encoding: 'utf8',
                         timeout: timelimit * 1000,  // msec
-                        maxBuffer: 4096*4096,
+                        maxBuffer: 8192*8192,
                         killSignal: 'SIGTERM',
                         cwd: null,
                         env: null
                       });
                       // console.log(correct_answer);
                       correct_answer=correct_answer.toString();
+                      if(users_answer.substring(users_answer.length-2)=='\r\n')
+                      users_answer = users_answer.substring(0,users_answer.length-2);
+                      if(correct_answer.substring(correct_answer.length-2)=='\r\n')
+                      correct_answer = correct_answer.substring(0,correct_answer.length-2);
+                      if(correct_answer==users_answer)continue;
                       correct_answer=correct_answer.replace(/[' '\t\v\f]+[\r\n]/gi,'\r');
                       users_answer=users_answer.replace(/[' '\t\v\f]+[\r\n]/gi,'\r');
-                      if(users_answer.substring(users_answer.length-2)=='\r\n')
-                        users_answer = users_answer.substring(0,users_answer.length-2);
-                      if(correct_answer.substring(correct_answer.length-2)=='\r\n')
-                        correct_answer = correct_answer.substring(0,correct_answer.length-2);
                       // console.log(no,set_num,number);
                       // console.log(correct_answer.length,correct_answer);
                       // console.log(users_answer.length,users_answer);
-                      console.log(correct_answer.length,users_answer.length);
+                      //console.log(correct_answer.length,users_answer.length);
                       if(correct_answer!=users_answer){
                         //실패
                         set_score(1);
-                        console.log('failure');
+                        //console.log('failure');
                         return;
                       }
                     }
                     if(set_num==1){
                       //데이터셋 없음
                       set_score(-1);
-                      console.log('no data');
+                      //console.log('no data');
                     }
                     else{
                       set_score(2);
-                      console.log('correct');
+                      //console.log('correct');
                     }
                   }catch(e){
                     //console.log(e);
                     if(e.signal=='SIGTERM'){
                       //TLE
                       set_score(3);
-                      console.log('Time Limit Exeed');
+                      //console.log('Time Limit Exeed');
                     }
                     else{
                       //Runtime Error??
                       set_score(4);
-                      console.log('Runtime Error??');
+                      //console.log('Runtime Error??');
                     }
                   }
                 });
