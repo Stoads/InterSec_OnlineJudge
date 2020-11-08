@@ -43,11 +43,11 @@ router.get('/', function(req, res, next) {
 
 router.get('/user/:id', function(req, res, next) {
   var id = req.params.id;
-  console.log(id+' in rankuser');
+  //console.log(id+' in rankuser');
   var sendjson = {
     session: req.session.user,
   };
-  console.log(sendjson);
+  //console.log(sendjson);
   var default_action = function() {
     dbControl.query('select ID,NICKNAME from user where id = ?',[id],function(err,rows,field){
       if(err)next(err);
@@ -73,13 +73,13 @@ router.get('/user/:id', function(req, res, next) {
             solved: [],
             wrong: []
           };
-          console.log(rows);
+          //console.log(rows);
           rows.forEach(function(v, i, c) {
             if (v['status'] == 1) status_info['wrong'].push(v['no']);
             else if (v['status'] == 2) status_info['solved'].push(v['no']);
           })
           sendjson['statusinfo'] = status_info;
-          console.log(status_info);
+          //console.log(status_info);
           res.render('rankuser',sendjson);
         })
       });
@@ -88,7 +88,7 @@ router.get('/user/:id', function(req, res, next) {
   if (req.session.user) {
     dbControl.query('select no,status from status where id = ? order by no', [req.session.user['ID']], function(err, rows, field) {
       if (err) next(err);
-      console.log(rows);
+      //console.log(rows);
       var user_json = {};
       rows.forEach(function(v, i, c) {
         user_json['' + v['no']] = v['status'];
