@@ -108,6 +108,10 @@ router.post('/:no', function(req, res, next) {
                       correct_answer=correct_answer.toString();
                       correct_answer=correct_answer.replace(/\s/gi,' ');
                       users_answer=users_answer.replace(/\s/gi,' ');
+                      if(users_answer[users_answer.length-1])
+                        users_answer = users_answer.substring(0,users_answer.length-1);
+                      if(correct_answer[correct_answer.length-1])
+                        correct_answer = correct_answer.substring(0,correct_answer.length-1);
                       console.log(no,set_num,number);
                       console.log(correct_answer);
                       console.log(users_answer);
