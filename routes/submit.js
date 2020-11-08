@@ -17,7 +17,7 @@ router.get('/:no', function(req, res, next) {
   dbControl.query("select NO,TITLE from problem where no = ?", [no], function(err, rows, field) {
     if (!err) {
       if (rows[0]) {
-        console.log(rows[0]);
+        // console.log(rows[0]);
         res.render('submit', {
           session: req.session.user,
           problem: rows[0]
@@ -67,7 +67,7 @@ router.post('/:no', function(req, res, next) {
           dbControl.query("select NUMBER from scoring order by number DESC limit 1",function(err,rows,field){
             if(!err){
               var number = rows[0]['NUMBER'];
-              console.log(number);
+              // console.log(number);
               var set_score = (sta) =>{
                 dbControl.query('update scoring set status = ? where number = ?',[sta,number],function(err,rows,field){
                   if(err)next(err);
@@ -84,13 +84,13 @@ router.post('/:no', function(req, res, next) {
                 exec('g++ -o C:/onlinejudge_execute/'+number+'.exe C:/onlinejudge_source/'+number+'.cpp',function(err,stdout,stderr){
                   console.log('compile Log');
                   if(err){
-                    console.log(err);
+                    // console.log(err);
                     set_score(5);
                     console.log('compile Error');
                     return;
                   }
-                  console.log(stdout);
-                  console.log(stderr);
+                  // console.log(stdout);
+                  // console.log(stderr);
                   console.log('compile Complete');
                   try{
                     var set_num = 1;
@@ -105,7 +105,7 @@ router.post('/:no', function(req, res, next) {
                         cwd: null,
                         env: null
                       });
-                      console.log(correct_answer);
+                      // console.log(correct_answer);
                       correct_answer=correct_answer.toString();
                       correct_answer=correct_answer.replace(/[\f\t\v\u00A0\u2028\u2029]/gi,' ');
                       users_answer=users_answer.replace(/[\f\t\v\u00A0\u2028\u2029]/gi,' ');
@@ -115,9 +115,9 @@ router.post('/:no', function(req, res, next) {
                         users_answer = users_answer.substring(0,users_answer.length-2);
                       if(correct_answer.substring(correct_answer.length-2)=='\r\n')
                         correct_answer = correct_answer.substring(0,correct_answer.length-2);
-                      console.log(no,set_num,number);
-                      console.log(correct_answer.length,correct_answer);
-                      console.log(users_answer.length,users_answer);
+                      // console.log(no,set_num,number);
+                      // console.log(correct_answer.length,correct_answer);
+                      // console.log(users_answer.length,users_answer);
                       if(correct_answer!=users_answer){
                         //실패
                         set_score(1);
@@ -159,7 +159,7 @@ router.post('/:no', function(req, res, next) {
       res.redirect('/status?from_problem=2&id='+req.session.user['ID']+'&no='+no);
     })
   })
-  console.log(req.body.code);
+  // console.log(req.body.code);
   //res.send(req.body.code);
 });
 
