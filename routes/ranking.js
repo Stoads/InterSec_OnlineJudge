@@ -10,7 +10,7 @@ var rank_list = function(req, res, next, page) {
     function(err, rows, field) {
       if (err) next(err);
       var pages = Math.ceil(rows[0]['COUNT'] / page_cut);
-      dbControl.query('select ID,NICKNAME,ifnull(SOLVED,0) as SOLVED from user left join (select id,count(*) as solved from status where status=2 group by id)cnt using(id) limit ?,?',
+      dbControl.query('select ID,NICKNAME,ifnull(SOLVED,0) as SOLVED from user left join (select id,count(*) as solved from status where status=2 group by id)cnt using(id) order by SOLVED DESC limit ?,?',
         [(page - 1) * page_cut, page_cut],
         function(err, rows, field) {
           if (err) next(err);
