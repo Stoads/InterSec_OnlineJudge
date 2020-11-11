@@ -14,7 +14,7 @@ var rank_list = function(req, res, next, page) {
         [(page - 1) * page_cut, page_cut],
         function(err, rows, field) {
           if (err) next(err);
-          console.log(rows);
+          //console.log(rows);
           res.render('ranklist', {
             session: req.session.user,
             rankList: rows,
@@ -66,7 +66,7 @@ router.get('/user/:id', function(req, res, next) {
         rows.forEach(function(v,i,c){
           try_info[v['status']]=v['COUNT'];
         });
-        console.log(try_info);
+        //console.log(try_info);
         sendjson['tryinfo'] = try_info;
         dbControl.query('select no,status from status where id = ? order by no', [id], function(err, rows, field) {
           var status_info = {
